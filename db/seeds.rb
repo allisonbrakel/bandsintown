@@ -10,8 +10,10 @@ require 'json'
 require 'pp'
 require 'mechanize'
 
+Event.destroy_all
 Band.destroy_all
 Venue.destroy_all
+
 
 mechanize = Mechanize.new
 
@@ -38,7 +40,7 @@ split_bands.each do |band|
 
   event_count = data['upcoming_event_count']
 
-  Band.create(name: band,
+  newBand = Band.create(name: band,
               event_count: event_count)
 
   # Do venue information here
@@ -54,12 +56,16 @@ split_bands.each do |band|
     long =  key["venue"]['longitude']
     lat = key["venue"]['latitude']
     location = key["venue"]['city'] + ", " + key["venue"]['country']
-    Venue.find_or_create_by(name: name, longitude: long, latitude: lat, location: location)
+    newVenue = Venue.find_or_create_by(name: name, longitude: long, latitude: lat, location: location)
+    date = key['datetime']
+    onsale = key['on_sale_datetime']
+
+    Event.create(event_date: date, onsale_date: onsale, band: newBand, venue: newVenue)
   end
 
 end
 
 puts "Seed generated: #{Band.count} bands"
 puts "Seed generated #{Venue.count} venues"
-
+puts "Seed generated #{Event.count} events"
 

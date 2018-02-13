@@ -52,6 +52,8 @@ split_bands.each do |band|
     lat = key["venue"]['latitude']
     location = key["venue"]['city'] + ", " + key["venue"]['country']
     puts location
+    puts key['datetime']
+    puts key['on_sale_datetime']
   end
 
 end
