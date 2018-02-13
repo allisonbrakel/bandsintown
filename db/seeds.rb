@@ -11,6 +11,7 @@ require 'pp'
 require 'mechanize'
 
 Band.destroy_all
+Venue.destroy_all
 
 mechanize = Mechanize.new
 
@@ -40,22 +41,25 @@ split_bands.each do |band|
   Band.create(name: band,
               event_count: event_count)
 
-  # url = 'https://rest.bandsintown.com/artists/' + urlBand + '/events?app_id=allison'
-  # uri = URI(url)
-  # response = Net::HTTP.get(uri)
-  #
-  # data = JSON.parse(response);
-  # puts data
+  # Do venue information here
+  url = 'https://rest.bandsintown.com/artists/' + urlBand + '/events?app_id=allison'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
 
-  # data.each do |key, value|
-  #   puts "\n #{key} "
-  #   value.each do | breed |
-  #     puts "	- #{breed} "
-  #   end
-  # end
+  data = JSON.parse(response);
+  #puts data
+
+  data.each do |key|
+    name =  key["venue"]['name']
+    long =  key["venue"]['longitude']
+    lat = key["venue"]['latitude']
+    location = key["venue"]['city'] + ", " + key["venue"]['country']
+    Venue.find_or_create_by(name: name, longitude: long, latitude: lat, location: location)
+  end
 
 end
 
 puts "Seed generated: #{Band.count} bands"
+puts "Seed generated #{Venue.count} venues"
 
 

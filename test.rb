@@ -46,8 +46,12 @@ split_bands.each do |band|
   data = JSON.parse(response);
   #puts data
 
-  data.each do |key, value|
-    puts key["venue"]
+  data.each do |key|
+    name =  key["venue"]['name']
+    long =  key["venue"]['longitude']
+    lat = key["venue"]['latitude']
+    location = key["venue"]['city'] + ", " + key["venue"]['country']
+    puts location
   end
 
 end
