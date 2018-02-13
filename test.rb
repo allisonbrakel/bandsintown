@@ -22,41 +22,42 @@ split_bands = bands.split("\n").map(&:strip);
 split_bands.each_index do |i|
   index = split_bands[i].index('(');
   split_bands[i] = split_bands[i][0..index-2]
+  puts split_bands[i]
 end
 
-
-split_bands.each do |band|
-  urlBand = band.sub(' ', '%20')
-  urlBand = urlBand.sub(' ', '%20')
-  url = 'https://rest.bandsintown.com/artists/' + urlBand + '?app_id=allison'
-  uri = URI(url)
-  response = Net::HTTP.get(uri)
-
-  data = JSON.parse(response);
-
-  event_count = data['upcoming_event_count']
-
-  # Band.create(name: band,
-  #             event_count: event_count)
-
-  url = 'https://rest.bandsintown.com/artists/' + urlBand + '/events?app_id=allison'
-  uri = URI(url)
-  response = Net::HTTP.get(uri)
-
-  data = JSON.parse(response);
-  #puts data
-
-  data.each do |key|
-    name =  key["venue"]['name']
-    long =  key["venue"]['longitude']
-    lat = key["venue"]['latitude']
-    location = key["venue"]['city'] + ", " + key["venue"]['country']
-    puts location
-    puts key['datetime']
-    puts key['on_sale_datetime']
-  end
-
-end
-
-
-
+#
+# split_bands.each do |band|
+#   urlBand = band.sub(' ', '%20')
+#   urlBand = urlBand.sub(' ', '%20')
+#   url = 'https://rest.bandsintown.com/artists/' + urlBand + '?app_id=allison'
+#   uri = URI(url)
+#   response = Net::HTTP.get(uri)
+#
+#   data = JSON.parse(response);
+#
+#   event_count = data['upcoming_event_count']
+#
+#   # Band.create(name: band,
+#   #             event_count: event_count)
+#
+#   url = 'https://rest.bandsintown.com/artists/' + urlBand + '/events?app_id=allison'
+#   uri = URI(url)
+#   response = Net::HTTP.get(uri)
+#
+#   data = JSON.parse(response);
+#   #puts data
+#
+#   data.each do |key|
+#     name =  key["venue"]['name']
+#     long =  key["venue"]['longitude']
+#     lat = key["venue"]['latitude']
+#     location = key["venue"]['city'] + ", " + key["venue"]['country']
+#     puts location
+#     puts key['datetime']
+#     puts key['on_sale_datetime']
+#   end
+#
+# end
+#
+#
+#
