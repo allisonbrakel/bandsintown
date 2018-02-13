@@ -10,11 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211204307) do
+ActiveRecord::Schema.define(version: 20180213003506) do
 
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.integer "event_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "event_date"
+    t.string "onsale_date"
+    t.integer "band_id"
+    t.integer "venue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["band_id"], name: "index_events_on_band_id"
+    t.index ["venue_id"], name: "index_events_on_venue_id"
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "longitude"
+    t.string "latitude"
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
