@@ -1,0 +1,6 @@
+<h1>About:</h1>
+<p>This web application uses Bands in Town API.</p>
+<p>To do this, data is scraped from a web page (altpress.com) to retrieve a list of bands from last year’s Warped Tour lineup. That data is retrieved using xPath, and then ‘split’ it into an array of band names. Using these band names, information is pulled in from the Bands in Town API to show upcoming events for those bands. The response from Bands in Town is JSON, and is then parsed for use. </p>
+<p>With this information, three database tables are created. The first table is the Band table, consisting of a primary key, the name of the band, and the number of upcoming events for that specific band. The Band table will have a one-to-many relationship with the Event table. </p>
+<p>The Event table is the ‘join’ table between Band and Venue. The Event table will hold a primary key, the date of the event, and the date tickets go on sale. It will also have two foreign keys relating back to the Band table, and to the Venue table.</p>
+<p>The Venue table will also have a one-to-many relationship with the Event table, because a venue can hold many events. The Venue table will hold a primary key, the venue name, the longitude and latitude, and the location (city, state/province, country). </p>
