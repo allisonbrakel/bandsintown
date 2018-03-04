@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
-  def Index
+  def index
+    @bands = Band.all
+    @events = Event.all
   end
 end

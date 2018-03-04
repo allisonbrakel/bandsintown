@@ -5,6 +5,14 @@ class BandsController < ApplicationController
   # GET /bands.json
   def index
     @bands = Band.all
+    @events = Event.all
+    @venues = Venue.all
+  end
+
+  def all_data
+    @bands = Band.all
+    @events = Event.all
+    @venues = Venue.all
   end
 
   # GET /bands/1
