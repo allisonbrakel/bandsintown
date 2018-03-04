@@ -3,6 +3,13 @@
 
 <p><%= link_to 'All Data', list_path%> </p>
 
+
+<%= form_tag(search_path, method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
 <table>
   <thead>
   <tr>

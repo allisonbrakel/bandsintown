@@ -1,0 +1,8 @@
+<h1>Search Results</h1>
+<p>Search for "<%= @search_terms%>" returned <%= pluralize(@bands.size, 'result') %></p>
+<ul>
+  <% @bands.each do |band| %>
+    <li><%= band.name %></li>
+  <% end %>
+</ul>
+
