@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :bands
+  resources :events
+  resources :venues
   get 'welcome/Index'
 
   root 'welcome#index'
