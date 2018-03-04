@@ -1,8 +1,9 @@
+<h2><%= link_to 'About', about_path%>    <%= link_to 'Homepage', root_path%>    <%= link_to 'Bands', bands_path%></h2>
 <h1>Search Results</h1>
 <p>Search for "<%= @search_terms%>" returned <%= pluralize(@bands.size, 'result') %></p>
 <ul>
   <% @bands.each do |band| %>
-    <li><%= band.name %></li>
+    <li><%= link_to band.name, bands_path + "/#{band.id}" %> </li>
   <% end %>
 </ul>
 
