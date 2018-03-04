@@ -1,4 +1,5 @@
 <h1>About:</h1>
+<h2><%= link_to 'About', about_path%>    <%= link_to 'Homepage', root_path%>    <%= link_to 'Bands', bands_path%></h2>
 <p>This web application uses Bands in Town API.</p>
 <p>To do this, data is scraped from a web page (altpress.com) to retrieve a list of bands from last year’s Warped Tour lineup. That data is retrieved using xPath, and then ‘split’ it into an array of band names. Using these band names, information is pulled in from the Bands in Town API to show upcoming events for those bands. The response from Bands in Town is JSON, and is then parsed for use. </p>
 <p>With this information, three database tables are created. The first table is the Band table, consisting of a primary key, the name of the band, and the number of upcoming events for that specific band. The Band table will have a one-to-many relationship with the Event table. </p>
