@@ -16,7 +16,7 @@ class BandsController < ApplicationController
   end
 
   def list
-    @bands = Band.all
+    @bands = Kaminari.paginate_array(@bands).page(params[:page]).per(10)
     @events = Event.all
     @venues = Venue.all
   end
