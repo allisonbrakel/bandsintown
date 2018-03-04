@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bands</h1>
+<h2><%= link_to 'About', about_path%>    <%= link_to 'Homepage', root_path%>    <%= link_to 'Bands', bands_path%></h2>
+
+
+  <ol>
+  <% @bands.each do |band| %>
+      <li><%= band.name %></li>
+      <p>Event Count: <%= band.event_count %></p>
+      <ul>
+        <% band.events.each do |event| %>
+          <li><%= event.venue.name %> - <%= event.venue.location %> </li>
+          <ul>
+            <li><%= event.event_date %></li>
+          </ul>
+        <% end %>
+      </ul>
+      <br />
+
+  <% end %>
+  </ol>
+</table>
+
+<br>
+

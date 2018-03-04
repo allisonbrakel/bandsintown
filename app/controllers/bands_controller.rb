@@ -15,6 +15,12 @@ class BandsController < ApplicationController
     @venues = Venue.all
   end
 
+  def list
+    @bands = Band.all
+    @events = Event.all
+    @venues = Venue.all
+  end
+
   # GET /bands/1
   # GET /bands/1.json
   def show
