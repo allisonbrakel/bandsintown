@@ -1,24 +1,12 @@
 <p id="notice"><%= notice %></p>
+<h2><%= link_to 'About', about_path%>    <%= link_to 'Homepage', root_path%>    <%= link_to 'Bands', bands_path%></h2>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Venue Name:</strong>
   <%= @venue.name %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @venue.longitude %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @venue.latitude %>
 </p>
 
 <p>
   <strong>Location:</strong>
   <%= @venue.location %>
 </p>
-
-<%= link_to 'Edit', edit_venue_path(@venue) %> |
-<%= link_to 'Back', venues_path %>

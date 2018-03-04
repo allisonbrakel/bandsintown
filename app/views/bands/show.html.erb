@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h2><%= link_to 'About', about_path%>    <%= link_to 'Homepage', root_path%>    <%= link_to 'Bands', bands_path%></h2>
 
 <p>
   <strong>Name:</strong>
@@ -10,5 +11,29 @@
   <%= @band.event_count %>
 </p>
 
-<%= link_to 'Edit', edit_band_path(@band) %> |
-<%= link_to 'Back', bands_path %>
+<table>
+  <thead>
+  <tr>
+    <th>Venue</th>
+    <th>Location</th>
+    <th>Event Date</th>
+    <th>On-sale Date</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @band.events.each do |event| %>
+    <tr>
+      <td><%= link_to event.venue.name, venues_path + "/#{event.venue.id}" %></td>
+      <td><%= event.venue.location %></td>
+      <td><%= event.event_date %></td>
+      <% if event.onsale_date == "" %>
+        <td>N/A</td>
+      <% else %>
+        <td><%= event.onsale_date %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
